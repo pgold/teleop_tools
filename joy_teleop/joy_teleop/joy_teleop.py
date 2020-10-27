@@ -143,8 +143,9 @@ class JoyTeleopTopicCommand(JoyTeleopCommand):
             # during runtime, and has the side benefit of giving the user early feedback if the
             # config can't work.
             self.msg_value = self.topic_type()
-            for target, param in msg_config.items():
-                set_member(self.msg_value, target, param['value'])
+            if msg_config is not None:
+              for target, param in msg_config.items():
+                  set_member(self.msg_value, target, param['value'])
 
         # An 'axis_mapping' takes data from one part of the message and scales and offsets it to
         # publish if an activation happens.  This is typically used to take joystick analog data
